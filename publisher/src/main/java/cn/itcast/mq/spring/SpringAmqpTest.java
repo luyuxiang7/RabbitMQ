@@ -52,4 +52,27 @@ public class SpringAmqpTest {
         String message = "hello, everyone!";
         rabbitTemplate.convertAndSend(exchangeName, "", message);
     }
+
+    @Test
+    public void testSendDirectExchange() {
+        // 交换机名称
+        String exchangeName = "itcast.direct";
+        // 消息
+        String message = "红色警报！日本乱排核废水，导致海洋生物变异，惊现哥斯拉！";
+        // 发送消息
+        rabbitTemplate.convertAndSend(exchangeName, "red", message);
+    }
+
+    /**
+     * topicExchange
+     */
+    @Test
+    public void testSendTopicExchange() {
+        // 交换机名称
+        String exchangeName = "itcast.topic";
+        // 消息
+        String message = "喜报！孙悟空大战哥斯拉，胜!";
+        // 发送消息
+        rabbitTemplate.convertAndSend(exchangeName, "china.news", message);
+    }
 }
